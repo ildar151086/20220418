@@ -10,46 +10,45 @@
 
 using namespace std;
 
-int main() {
-    setlocale(LC_ALL, "RUS");
+/// сравниваем символы. Если разные то прибавляем к счетчику 1 
+inline int compare(char readCh,  char previousCH, int countIndex) {
+    return (readCh != previousCH) ? (countIndex + 1) : 1;
+}
 
-    // Инициализируем фаловую переменную для чтения
-    ifstream fileRead;
+/// Максимальынй элемент из двуух чисел
+inline int maxmially(int countIndex, int maxCount) {
+    return (countIndex >= maxCount) ? countIndex : maxCount;
+}
 
-    // Переменная для хранения читаемого символа из файла Текущего предыдущего и следующего
-    char readCh = ' ';
-    char previousCH = ' ';
-
-    // Будем хранить максимальное последовательность различных символов
+/// <summary>
+/// Определяет максимальную последовательность символов
+/// </summary>
+/// <param name="fileRead">Файл для анализа</param>
+/// <returns>Максимальная длина различных символов</returns>
+int maxCountInFile(ifstream &fileRead) {
     int maxCount = 0;
-
-    // Открываем файл
-    fileRead.open("24_demo.txt");
-
     // Счетчик для хранения последовательности различных символов
     int countIndex = 1;
 
-    // Читаем файл по символьно
-    while (fileRead.get(readCh)) {
+    char readCh = ' ';
+    char previousCH = ' ';
 
-        // Считаем количсетво различным символов идущих подряд
-        if (readCh != previousCH) {
-            countIndex++;
-        }
-        else {
-            // Если символы одинаковые то обнуляем счетчик
-            countIndex = 1;
-        }
+    while (fileRead.get(readCh)) {  
 
-        // Определяем предыдущий символ для следующей итерации
+        countIndex = compare(readCh, previousCH, countIndex);
+        maxCount = maxmially(countIndex, maxCount);
         previousCH = readCh;
 
-        // Проверяем текущую последовательность на максимальную
-        if (countIndex >= maxCount) {
-            maxCount = countIndex;
-        }
     }
-    cout << "Максимальная последовательность : " << maxCount;
+    return maxCount;
+}
+
+int main() {
+    setlocale(LC_ALL, "RUS");
+    ifstream fileRead;
+
+    fileRead.open("24_demo.txt");
+    cout << "Максимальная последовательность : " << maxCountInFile(fileRead);
 
     // Закрываем файл
     fileRead.close();
