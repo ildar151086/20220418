@@ -1,27 +1,69 @@
-﻿
+﻿/*
+Задание №1
+Реализуйте класс “Студент”. Необходимо хранить в перемен-
+ных-членах класса: ФИО, дату рождения, контактный телефон,
+город, страну, название учебного заведения, город и страну (где
+находится учебное заведение), номер группы. Реализуйте функ-
+ции-члены класса для ввода данных, вывода данных, реализуйте
+аксессоры для доступа к отдельным переменным-членам.
+*/
+
 #include<iostream>
 #include<string>
-#include<time.h>
 
 using namespace std;
 
-
+/// <summary>
+/// Класс описывающий студента
+/// </summary>
 class Student {
-		int age;
+		string surname;
 		string name;
-		int num_grupp;
+		string middleТame;
+		string birthdate;
+		string telefon;
+		int numberGrupp;
 	public:
-		void set_Age(int ageValue) {
-			age = ageValue;
+		void setSurname(string value) {
+			surname = value;
 		}
-		void set_Name(string nameValue) {
-			name = nameValue;
+		void setName(string value) {
+			name = value;
 		}
-		void set_num_grupp(int num_gruppValue) {
-			num_grupp = num_gruppValue;
+		void setMiddleТame(string value) {
+			middleТame = value;
+		}
+		void setBirthdate(string value) {
+			birthdate = value;
+		}
+		void setTelefon(string value) {
+			telefon = value;
+		}
+		void setNumberGrupp(int value) {
+			numberGrupp = value;
+		}
+		string getSurname() {
+			return surname;
+		}
+		string getName() {
+			return name;
+		}
+		string getMiddleТame() {
+			return middleТame;
+		}
+		string getBirthdate() {
+			return birthdate;
+		}
+		string getTelefon() {
+			return telefon;
+		}
+		int getberGrupp() {
+			return numberGrupp;
 		}
 		void print() {
-			cout << " Age " << age << "\n Name " << name << "\n Number " << num_grupp << endl;
+			cout << "Фамилия " << surname << "\nИмя " << name << "\nОтчетсво " << middleТame 
+				 << "\nДата рождения " << birthdate << "\nТелефон " << telefon << "\nНомер группы "
+				 << numberGrupp;
 		}
 };
 
@@ -30,9 +72,13 @@ int main() {
 	
 	Student student;
 
-	student.set_Age(15);
-	student.set_Name("ildar");
-	student.set_num_grupp(10);
+	student.setSurname("Ягудин");
+	student.setName("Ильдар");
+	student.setMiddleТame("Ришатович");
+	student.setBirthdate("15/10/1986");
+	student.setTelefon("+7373263104");
+	student.setNumberGrupp(15);
+
 	student.print();
 
 	return 0;
